@@ -2,8 +2,8 @@
  Udacity's Fron-end Nanodegree First Project
 
 ## Table of Content
-* [Description]()
-* [HTML & CSS]()
+* [Description]
+* [HTML & CSS]
 
 
 
