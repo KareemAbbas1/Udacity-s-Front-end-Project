@@ -14,4 +14,4 @@ There are four sections in the page, each is highlight while scrolling tho enhan
 
 
 ### HTML & CSS
-The project already have an HTML & CSS starter code in Udacity's repositroy that provides a static version of it. The main purpose of this project it to converted the static landing page to a dynamic one which has been done using JavaScript(ES6).
+The project already has an HTML & CSS starter code in Udacity's repositroy that provides a static version of it. The main purpose of this project it to converted the static landing page to a dynamic one which has been done using JavaScript(ES6).
