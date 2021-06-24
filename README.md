@@ -1,9 +1,5 @@
 # Udacity Landing Page Project
-
-## Pesonal Announcment:
- First, I want to inform you that I got covid-19 on the 7th of June, and I stayed in bed for more than a week. I started the actual stuying on the 16th or the 17th of June and I had to rush it so that I manage to deliver the project before the deadline. Basically, I didn't quite understand or digest the material very well and I was stressed the whole time but I insisted on delivering on time even if the project doesn't quite abide by the criteria hoping that I might have a second chance to revise the material and enhance my performance.
-
-
+ Udacity's Fron-end Nanodegree First Project
 
 ## Table of Content
 * [Description]()
