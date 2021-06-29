@@ -40,47 +40,38 @@ let docFragment = document.createDocumentFragment();
 // build the nav
 // a for...of loop to loop over all the sections and create <li> for each
 for (section of sections) {
-    const listItem = document.createElement('li');
+    listItem = document.createElement('li');
     //get the attribute of data-nav to define each section name
     const  sectionName= section.getAttribute('data-nav');
-    
-    listItem.addEventListener("click", (event) => {
-        event.preventDefault();
-       section.scrollIntoView({behavior: "smooth", block: "center"});
-   });
+    //get the attribute of the id to define each section link
+    const  sectionLink= section.getAttribute('id');
 
      // adding the content of lit item element 
-     listItem.innerHTML= `<a class= "menu__link" href= #${section.id}>${sectionName}</a>`;
+     listItem.innerHTML= `<a class= "menu__link" href= #${sectionLink}>${sectionName}</a>`;
      
      docFragment.appendChild(listItem);
     
     console.log(docFragment);
-
 };
 //append the fragment to the menu variable to add its content to the page
 menu.appendChild(docFragment);
-
-
+listItem.addEventListener("click", (event) => {
+    event.preventDefault();
+   section.scrollIntoView({behavior: "smooth", block: "center"});
+});
 
 // Add class 'active' to section when near top of viewport
 // The refrence from which I understod the intersection observer 'https://www.youtube.com/watch?v=T8EYosX4NOo'
-
 const options = {threshold: 0.7}; 
-                
 const observer = new IntersectionObserver(function
     (entries, observer) {
-
         entries.forEach(entry => { // if... else conditional to detect when to highlight the section and when to unhighlight it
         if (entry.isIntersecting) {
-            section.classList.add(`your-active-class`);
-            //listItem.classList.add(`menu__link`);
-            
+            entry.target.classList.add(`your-active-class`);
         }
           
         else {
-            section.classList.remove(`your-active-class`);
-            //listItem.classList.remove(`menu__link`)
-           
+            entry.target.classList.remove(`your-active-class`);
         }
           
         });
@@ -89,7 +80,7 @@ const observer = new IntersectionObserver(function
     sections.forEach(section => { // looping over section to apply the function to each section
         observer.observe(section);
     });
-    section.addEventListener(scroll, observer);
+
 // Scroll to anchor ID using scrollTO event
 
 
@@ -98,7 +89,7 @@ const observer = new IntersectionObserver(function
  * Begin Events
  * 
 */
- 
+
 // Build menu 
 
 // Scroll to section on link click
