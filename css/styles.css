@@ -75,10 +75,6 @@ section {
     display: inline-block;
 }
 
-.navbar__menu li.active{
-    background: #333;
-    color: #fff;
-}
 
 .navbar__menu .menu__link {
     display: block;
@@ -94,7 +90,11 @@ section {
     transition: ease 0.3s all;
 }
 
-
+.navbar__menu .menu__link.active{ /*styling the nav link to call it when highlighting the section in viewport*/
+    display: inline-block;
+    background: #333;
+    color: #fff;
+}
 
 /* Header Styles */
 .page__header {

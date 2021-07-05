@@ -22,10 +22,16 @@ const sections = document.querySelectorAll('section');
 // navigation global variable 
 const menu = document.getElementById('navbar__list');
 // Document fragment to append the list items to it to enhance the performance
-let docFragment = document.createDocumentFragment();
+const docFragment = document.createDocumentFragment();
 /*
  * End Global Variables
 */
+
+
+
+
+
+
 
 /*
  * Begin Main Functions
@@ -34,54 +40,48 @@ let docFragment = document.createDocumentFragment();
 // build the nav
 
 function navBuilder () {
-
-    for (section of sections) { // a for...of loop to loop over all the sections and create <li> for each
+ // a for...of loop to loop over all the sections and create <li> for each
+    for (const section of sections) { 
         
-    const listItem = document.createElement('li');
+     const listItem = document.createElement('li');
 
-    //const listItemLink = document.createElement('a');
+     const  sectionName = section.getAttribute('data-nav');
 
-    const  sectionName = section.getAttribute('data-nav');
+     listItem.innerHTML= `<a class= "menu__link" href= "#${section.id}">${sectionName}</a>`;
 
-    /*listItem.addEventListener("click", function (event) {
-        event.preventDefault();
-        section.scrollIntoView({behavior: "smooth", block: "center"});
-     });*/
-
-    /*listItem.addEventListener("click", function(event) {
-        event.preventDefault();
-        section.scrollIntoView({behavior: "smooth"});
-    });*/
-
-                              
-    listItem.innerHTML= `<a class= "#${section.id}; menu__link" href= #${section.id}>${sectionName}</a>`;  //href= #${section.id} I removed the href and instead tried to use an even listener as mentioned but preventDefault is always undefined in the console
-
-    
-     //listItem.appendChild(listItemLink);
+     listItem.addEventListener("click", function(event) {//this code isn't working 
+         event.preventDefault();
+         section.scrollIntoView({behavior: "smooth", block: "center"});
+     });
      
      docFragment.appendChild(listItem);
     };
-    
-menu.appendChild(docFragment);
+    menu.appendChild(docFragment);
 };
 
 // Add class 'active' to section when near top of viewport
-
-function makeActive() {
-
+function makeActive() {                                                         
+    const links = document.querySelectorAll('a');
     for (const section of sections) {
         const box = section.getBoundingClientRect();
         
         if (box.top <= 150 && box.bottom >= 300) {
+
            section.classList.add('your-active-class');
-           
-           //listItem.classList.add('active'); listItem is undefined in the console. I tried also to declear a new var and assign <a>/<li> to it but it didn't work also, only one link was gighlighted 
-            
+
+           for (const link of links) {
+               if (section.getAttribute("data_nav") === link.textContent){
+                   link.classList.add('active');
+                   section.scrollIntoView({behavior: "smooth", block: "center"});
+               }
+           }
+
         }
         else {
            section.classList.remove('your-active-class');
            
-           //listItem.classList.remove('active');
+           
+
         };
     };
 };
@@ -89,11 +89,9 @@ function makeActive() {
 
 // Scroll to anchor ID using scrollTO event
 
-
-/**
+/*
  * End Main Functions
  * Begin Events
- * 
 */
 document.addEventListener("scroll", function () {
     makeActive();
@@ -108,12 +106,10 @@ navBuilder();
 makeActive();
 
 
-
-
-/*listItem.addEventListener("click", scrollIntoView(event) => {
-   event.preventDefault();
-   section.scrollIntoView({behavior: "smooth", block: "end", inline: "inline"});
-});*/
+/*listItem.addEventListener("click", function(event) {
+         event.preventDefault();
+         section.scrollIntoView({behavior: "smooth"});
+     });*/
 
 // The refrence from which I understod the intersection observer 'https://www.youtube.com/watch?v=T8EYosX4NOo'
 /*const options = {threshold: 0.7}; 
@@ -134,4 +130,58 @@ const observer = new IntersectionObserver(function
     sections.forEach(section => { // looping over section to apply the function to each section
         observer.observe(section);
     });
+    
+*/
+/*
+if ("intersectionObserver" in window) {
+const observer = new IntersectionObserver (callback, otionsObject);
+for (const section of sections) {
+    observer.observe(section);
+ }
+};
+const link = document.querySelectorAll("a");
+function callback (entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersection) {
+            
+            entry.addClassList.add("your-active-class");
+
+            for (const link of links){
+            if (entry.target.getAttribute("data-nav")) === link.textContent
+               link.classList.add("active-link")
+            }
+            observer.unobserve(entry.target)
+        }
+    })
+}
+const optionsObject = {threshold}
+*/
+/*
+links.addEventListener('click', selectSection)
+
+function selectSection(event) {
+
+    for (const section of sections) {
+        event.preventDefault();
+        if (section.getAttribute('data-nav')=== event.target.textContent) {
+            section.scrollIntoView({behavior: "smooth", block: "center"});
+        }
+    }
+
+    //const clickedSection = event.target.textContent
+
+    //clickedSection.scrollIntoView({behavior: "smooth", block: "center"});
+
+}
+*/
+/*
+const menu = document.getElementById("navbar__list");
+menu.addEventListener("click", scrollToSection)
+
+function scrollToSection(event) {
+   event.preventDefault();
+   for (const section of sections) {
+
+   }
+}
 */
